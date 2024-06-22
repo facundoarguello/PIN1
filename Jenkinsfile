@@ -6,32 +6,27 @@ pipeline {
   }
 
   environment {
-    ARTIFACT_ID = "elbuo8/webapp:${env.BUILD_NUMBER}"
+        DOCKER_IMAGE = 'jenkinsfile_pin'
+        DOCKER_USER = 'farguello1995'
+        DOCKER_REPO = 'nombre_de_tu_repositorio'
+        DOCKER_TAG = 'v1'
   }
    stages {
-   stage('Building image') {
+   stage('pull image') {
       steps{
-          sh '''
-          docker build -t testapp .
-             '''  
+          sh """
+          docker pull ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}
+             """ 
         }
     }
   
   
     stage('Run tests') {
       steps {
-        sh "docker run testapp npm test"
+        sh "docker IMAGES"
       }
     }
-   stage('Deploy Image') {
-      steps{
-        sh '''
-        docker tag testapp 127.0.0.1:5000/mguazzardo/testapp
-        docker push 127.0.0.1:5000/mguazzardo/testapp   
-        '''
-        }
-      }
-    }
+
 }
 
 
