@@ -26,7 +26,7 @@ pipeline {
         sh "docker IMAGES"
       }
     }
-
+   }
 }
 
 
