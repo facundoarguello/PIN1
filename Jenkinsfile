@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+        docker {
+            image 'docker:19.03.12' // Imagen Docker-in-Docker (dind)
+            args '--privileged' // Necesario para Docker-in-Docker
+        }
+    }
 
   options {
     timeout(time: 2, unit: 'MINUTES')
