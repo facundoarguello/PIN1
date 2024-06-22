@@ -23,7 +23,7 @@ pipeline {
   
     stage('Run tests') {
       steps {
-        sh "docker IMAGES"
+        sh "docker images"
       }
     }
    }
