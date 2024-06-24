@@ -52,6 +52,14 @@ pipeline {
         
       }
     }
+    stage('tag and push registry'){
+      steps {
+
+        sh "docker tag ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG} localhost:8083/test_jenkinsfile:v1"
+        sh "docker push localhost:8083/test_jenkinsfile:v1"
+        
+      }
+    }
    }
 }
 
