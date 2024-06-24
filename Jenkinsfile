@@ -26,6 +26,12 @@ pipeline {
         sh "docker images"
       }
     }
+    stage("Push registry") {
+      steps{
+        sh "docker tag ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_USER}/${DOCKER_IMAGE}:v2"
+        sh "docker push ${DOCKER_USER}/${DOCKER_IMAGE}:v2"
+      }
+    }
    }
 }
 
