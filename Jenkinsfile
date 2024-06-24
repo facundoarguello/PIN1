@@ -26,6 +26,17 @@ pipeline {
         sh "docker images"
       }
     }
+    stage('Login in dockerhub'){
+      steps {
+        withCredentials([
+          usernamePassword(credentials: 'docker-cred', usernameVariable: docker_user, passwordVariable:pass_docker)
+        ]){
+          echo "${docker_user}"
+          sh "docker login -u ${DOCKER_USER} -p ${pass_docker}"
+        }
+        
+      }
+    }
     stage("Push registry") {
       steps{
         sh "docker tag ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_USER}/${DOCKER_IMAGE}:v2"
