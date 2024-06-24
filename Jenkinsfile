@@ -10,6 +10,7 @@ pipeline {
         DOCKER_USER = 'farguello1995'
         DOCKER_REPO = 'nombre_de_tu_repositorio'
         DOCKER_TAG = 'v1'
+        DOCKER_PASS = credentials('docker-pass-cred')
   }
    stages {
    stage('pull image') {
@@ -28,12 +29,8 @@ pipeline {
     }
     stage('Login in dockerhub'){
       steps {
-        withCredentials([
-          usernamePassword(credentials: 'docker-cred', usernameVariable: docker_user, passwordVariable:pass_docker)
-        ]){
-          echo "${docker_user}"
-          sh "docker login -u ${DOCKER_USER} -p ${pass_docker}"
-        }
+        echo "${DOCKER_USER}"
+        sh "docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
         
       }
     }
