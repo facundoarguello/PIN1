@@ -48,7 +48,7 @@ pipeline {
     stage('Login in nexus'){
       steps {
 
-        sh "docker login -u ${NEXUS_USER} -p ${NEXUS_PASS}"
+        sh "docker login -u localhost:${NEXUS_USER} -p ${NEXUS_PASS}"
         
       }
     }
