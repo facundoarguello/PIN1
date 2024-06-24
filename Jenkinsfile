@@ -49,7 +49,7 @@ pipeline {
       steps {
 
         sh "docker login localhost:${NEXUS_IP_PORT} -u ${NEXUS_USER} -p ${NEXUS_PASS}"
-        sh "docker login localhost:8083"
+        sh "docker login localhost:8083 -u ${NEXUS_USER} -p ${NEXUS_PASS}"
         
       }
     }
