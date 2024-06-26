@@ -8,7 +8,6 @@ pipeline {
   environment {
         DOCKER_IMAGE = 'jenkinsfile_pin'
         DOCKER_USER = 'farguello1995'
-        DOCKER_REPO = 'nombre_de_tu_repositorio'
         DOCKER_TAG = 'v1'
         DOCKER_PASS = credentials('docker-pass-cred')
         NEXUS_IP_PORT = 8082
